@@ -1199,3 +1199,124 @@ body {
   .faq-q { padding: 1.1rem 1.2rem; font-size: 0.88rem; }
   .faq-a p { padding: 0 1.2rem; font-size: 0.84rem; }
 }
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-switcher {
+  position: relative;
+  z-index: 100;
+}
+.lang-switcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.7rem;
+  color: white;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+.navbar.scrolled .lang-switcher-btn {
+  background: rgba(10,22,40,0.06);
+  border-color: rgba(10,22,40,0.15);
+  color: var(--navy);
+}
+.lang-switcher-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+.navbar.scrolled .lang-switcher-btn:hover {
+  background: rgba(10,22,40,0.1);
+}
+.lang-switcher-flag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.lang-switcher-label {
+  font-weight: 600;
+}
+.lang-switcher-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+.lang-switcher-arrow.open {
+  transform: rotate(180deg);
+}
+.lang-switcher-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  min-width: 160px;
+  overflow: hidden;
+  animation: fadeUp 0.2s ease;
+}
+.lang-switcher-option {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--navy);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+.lang-switcher-option:hover {
+  background: var(--cream);
+}
+.lang-switcher-option.active {
+  background: rgba(200,150,12,0.12);
+  font-weight: 600;
+}
+
+/* RTL Support */
+[dir="rtl"] .hero-title,
+[dir="rtl"] .section-title,
+[dir="rtl"] .section-label,
+[dir="rtl"] .why-intro,
+[dir="rtl"] .contact-info-title,
+[dir="rtl"] .contact-info-text,
+[dir="rtl"] .faq-subtitle,
+[dir="rtl"] .footer-brand-desc,
+[dir="rtl"] .service-desc,
+[dir="rtl"] .why-feature-desc,
+[dir="rtl"] .why-cert-text,
+[dir="rtl"] .process-step-desc,
+[dir="rtl"] .faq-a p {
+  text-align: right;
+}
+[dir="rtl"] .section-label.left::before { display: block; }
+[dir="rtl"] .section-label.left::after { display: none; }
+[dir="rtl"] .lang-switcher-dropdown {
+  right: auto;
+  left: 0;
+}
+[dir="rtl"] .nav-links {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .hero-content {
+  direction: rtl;
+}
+[dir="rtl"] .contact-detail {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+[dir="rtl"] .why-feature {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+[dir="rtl"] .footer-inner {
+  direction: rtl;
+}
+

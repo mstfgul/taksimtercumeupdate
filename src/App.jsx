@@ -1,104 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import { Routes, Route, Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
+import { translations, LANG_CONFIG } from './translations'
+
+/* ─── LANGUAGE CONTEXT ─── */
+const LangContext = createContext()
+export const useLang = () => useContext(LangContext)
+
+function LangProvider({ children }) {
+  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'tr')
+  const t = translations[lang]
+  const dir = LANG_CONFIG[lang].dir
+
+  useEffect(() => {
+    localStorage.setItem('lang', lang)
+    document.documentElement.lang = lang
+    document.documentElement.dir = dir
+  }, [lang, dir])
+
+  return (
+    <LangContext.Provider value={{ lang, setLang, t, dir, config: LANG_CONFIG[lang] }}>
+      {children}
+    </LangContext.Provider>
+  )
+}
 
 /* ─── DATA ─── */
-const SERVICES = [
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-    </svg>
-  ), title: 'Belge Çevirisi', desc: 'Pasaport, nüfus cüzdanı, diploma, sözleşme ve her türlü resmi belgenin profesyonel çevirisi.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-    </svg>
-  ), title: 'Tercümanlık Hizmetleri', desc: 'Mahkeme, noter, iş toplantıları ve konferanslar için deneyimli tercümanlarımızla anlık destek.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
-    </svg>
-  ), title: 'Noter Onaylı Çeviri', desc: 'Yeminli mütercimler tarafından hazırlanan, noter onaylı ve resmi kurumlarca kabul edilen çeviriler.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/>
-    </svg>
-  ), title: 'Hukuki Çeviri', desc: 'Sözleşmeler, mahkeme kararları, hukuki belgeler için terminoloji uzmanı çevirmenler.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-    </svg>
-  ), title: 'Tıbbi Çeviri', desc: 'Hasta dosyaları, ilaç prospektüsleri, klinik raporlar için tıp terminolojisine hâkim ekip.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-    </svg>
-  ), title: 'Teknik & Yazılım Çeviri', desc: 'Kullanım kılavuzları, teknik şartnameler ve yazılım lokalizasyonu için uzman çevirmenler.' },
-]
-
-const LANGUAGES = [
-  { code: 'gb', flag: '🇬🇧', name: 'İngilizce', native: 'English' },
-  { code: 'de', flag: '🇩🇪', name: 'Almanca', native: 'Deutsch' },
-  { code: 'fr', flag: '🇫🇷', name: 'Fransızca', native: 'Français' },
-  { code: 'sa', flag: '🇸🇦', name: 'Arapça', native: 'العربية' },
-  { code: 'ru', flag: '🇷🇺', name: 'Rusça', native: 'Русский' },
-  { code: 'es', flag: '🇪🇸', name: 'İspanyolca', native: 'Español' },
-  { code: 'cn', flag: '🇨🇳', name: 'Çince', native: '中文' },
-  { code: 'jp', flag: '🇯🇵', name: 'Japonca', native: '日本語' },
-  { code: 'it', flag: '🇮🇹', name: 'İtalyanca', native: 'Italiano' },
-  { code: 'nl', flag: '🇳🇱', name: 'Hollandaca', native: 'Nederlands' },
-  { code: 'pl', flag: '🇵🇱', name: 'Lehçe', native: 'Polski' },
-  { code: 'pt', flag: '🇵🇹', name: 'Portekizce', native: 'Português' },
-]
-
-const WHY_FEATURES = [
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
-    </svg>
-  ), title: 'Uzman Çevirmen Kadrosu', desc: 'Tüm çevirmenlerimiz ilgili dil ve alanda lisans/lisansüstü eğitim almış, sertifikalı uzmanlardır.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-    </svg>
-  ), title: 'Hızlı & Güvenilir Teslimat', desc: 'Acil teslimatlarda 24 saat içinde, standart çalışmalarda belirlenen sürede kesin teslimat garantisi.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-    </svg>
-  ), title: 'Gizlilik Güvencesi', desc: 'Tüm belgeleriniz NDA kapsamında korunur; veri güvenliği en üst düzeyde sağlanır.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-    </svg>
-  ), title: 'Çift Aşamalı Kalite Kontrol', desc: 'Her çeviri, uzman mütercim ve editör tarafından iki kez incelenerek teslim edilir.' },
-]
-
-const CERTS = [
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-    </svg>
-  ), title: 'ISO 17100 Sertifikası', text: 'Uluslararası çeviri hizmetleri standardına uygunluk belgesi.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
-    </svg>
-  ), title: 'Yeminli Tercümanlık Yetkisi', text: 'Türkiye Adalet Bakanlığı onaylı yeminli tercüman kadrosu.' },
-  { icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-    </svg>
-  ), title: '20+ Yıl Deneyim', text: '2004 yılından bu yana binlerce müvekkile hizmet veriyoruz.' },
-]
-
-const PROCESS_STEPS = [
-  { num: '01', title: 'Belge Gönderin', desc: 'E-posta veya WhatsApp üzerinden belgelerinizi bize iletebilirsiniz.' },
-  { num: '02', title: 'Fiyat Teklifi', desc: 'Belge türü ve dil çiftine göre dakikalar içinde fiyat teklifinizi alın.' },
-  { num: '03', title: 'Çeviri Süreci', desc: 'Uzman ekibimiz çevirinizi titizlikle hazırlar, editörden geçirir.' },
-  { num: '04', title: 'Teslim & Onay', desc: 'Dijital veya ıslak imzalı çeviriniz belirlenen sürede teslim edilir.' },
-]
-
 const HELLOS = [
   'Merhaba', 'Hello', 'Hallo', 'Bonjour', 'Hola', 'Ciao', 'Olá',
   'Привет', 'مرحبا', 'こんにちは', '你好', '안녕하세요', 'नमस्ते',
@@ -183,11 +110,45 @@ function HelloCycler() {
   )
 }
 
+/* ─── LANGUAGE SWITCHER ─── */
+function LangSwitcher() {
+  const { lang, setLang } = useLang()
+  const [open, setOpen] = useState(false)
+  const langs = Object.keys(LANG_CONFIG)
+
+  return (
+    <div className="lang-switcher">
+      <button className="lang-switcher-btn" onClick={() => setOpen(!open)}>
+        <span className="lang-switcher-flag">{LANG_CONFIG[lang].flag}</span>
+        <span className="lang-switcher-label">{LANG_CONFIG[lang].label}</span>
+        <svg className={`lang-switcher-arrow${open ? ' open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      {open && (
+        <div className="lang-switcher-dropdown">
+          {langs.map(l => (
+            <button
+              key={l}
+              className={`lang-switcher-option${l === lang ? ' active' : ''}`}
+              onClick={() => { setLang(l); setOpen(false) }}
+            >
+              <span className="lang-switcher-flag">{LANG_CONFIG[l].flag}</span>
+              <span>{LANG_CONFIG[l].nativeName}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ─── NAVBAR ─── */
 function Navbar() {
   const scrolled = useNavScroll()
   const location = useLocation()
   const navigate = useNavigate()
+  const { t } = useLang()
   const isHome = location.pathname === '/'
   const navScrolled = !isHome || scrolled
 
@@ -210,12 +171,13 @@ function Navbar() {
         </div>
       </a>
       <ul className="nav-links">
-        <li><NavLink to="/">Anasayfa</NavLink></li>
-        <li><NavLink to="/hizmetler">Hizmetler</NavLink></li>
-        <li><NavLink to="/neden-biz">Neden Biz</NavLink></li>
-        <li><NavLink to="/diller">Diller</NavLink></li>
-        <li><NavLink to="/sss">SSS</NavLink></li>
-        <li><NavLink to="/iletisim" className="nav-cta">Teklif Al</NavLink></li>
+        <li><NavLink to="/">{t.nav.home}</NavLink></li>
+        <li><NavLink to="/hizmetler">{t.nav.services}</NavLink></li>
+        <li><NavLink to="/neden-biz">{t.nav.whyUs}</NavLink></li>
+        <li><NavLink to="/diller">{t.nav.languages}</NavLink></li>
+        <li><NavLink to="/sss">{t.nav.faq}</NavLink></li>
+        <li><NavLink to="/iletisim" className="nav-cta">{t.nav.quote}</NavLink></li>
+        <li><LangSwitcher /></li>
       </ul>
     </nav>
   )
@@ -224,6 +186,7 @@ function Navbar() {
 /* ─── HERO ─── */
 
 function Hero() {
+  const { t } = useLang()
   return (
     <section className="hero" id="hero">
       <div className="hero-bg-pattern" />
@@ -236,20 +199,20 @@ function Hero() {
       <div className="hero-content">
         <div className="hero-left">
           <h1 className="hero-title">
-            <em>Köprü</em> Kuruyoruz
-            <strong>Dilden Dile,</strong>
-            <strong>Kültürden Kültüre.</strong>
+            <em>{t.hero.titleEm}</em>{t.hero.titleRest}
+            <strong>{t.hero.title2}</strong>
+            <strong>{t.hero.title3}</strong>
           </h1>
           <div className="hero-divider" />
           <p className="hero-subtitle">
-            20 yılı aşkın deneyimimizle 80'den fazla dilde profesyonel çeviri ve tercümanlık hizmetleri sunuyoruz. Resmi belgelerden teknik çevirilere, her ihtiyacınızda yanınızdayız.
+            {t.hero.subtitle}
           </p>
           <div className="hero-actions">
             <Link to="/iletisim" className="btn-primary">
-              Teklif Al →
+              {t.hero.btn1}
             </Link>
             <Link to="/hizmetler" className="btn-outline">
-              Hizmetleri İncele
+              {t.hero.btn2}
             </Link>
           </div>
         </div>
@@ -266,7 +229,7 @@ function Hero() {
             />
             <div className="hero-map-overlay">
               <svg className="hero-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span className="hero-map-label">İstiklal Cad. No:42, Taksim</span>
+              <span className="hero-map-label">{t.hero.mapLabel}</span>
             </div>
           </div>
         </div>
@@ -277,21 +240,31 @@ function Hero() {
 
 /* ─── SERVICES ─── */
 function Services() {
+  const { t } = useLang()
+  const serviceIcons = [
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+  ]
+
   return (
     <section className="services" id="hizmetler">
       <Skyline position="bottom" color="var(--navy)" opacity={0.18} />
       <div className="container">
         <div className="services-header reveal">
-          <div className="section-label">Hizmetlerimiz</div>
-          <h2 className="section-title">Her İhtiyacınıza Özel<br /><em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Çeviri Çözümleri</em></h2>
+          <div className="section-label">{t.services.label}</div>
+          <h2 className="section-title">{t.services.title1}<br /><em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>{t.services.title2}</em></h2>
         </div>
         <div className="services-grid">
-          {SERVICES.map((s, i) => (
-            <div className={`service-card reveal reveal-d${(i % 3) + 1}`} key={s.title}>
-              <div className="service-icon">{s.icon}</div>
+          {t.services.items.map((s, i) => (
+            <div className={`service-card reveal reveal-d${(i % 3) + 1}`} key={i}>
+              <div className="service-icon">{serviceIcons[i]}</div>
               <div className="service-title">{s.title}</div>
               <div className="service-desc">{s.desc}</div>
-              <div className="service-arrow">Detaylı Bilgi →</div>
+              <div className="service-arrow">{t.services.detail}</div>
             </div>
           ))}
         </div>
@@ -302,6 +275,19 @@ function Services() {
 
 /* ─── WHY US ─── */
 function WhyUs() {
+  const { t } = useLang()
+  const featureIcons = [
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>,
+  ]
+  const certIcons = [
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
+  ]
+
   return (
     <section className="why-us" id="neden-biz">
       <div className="why-us-bg" />
@@ -310,19 +296,19 @@ function WhyUs() {
         <div className="why-us-inner">
           <div>
             <div className="reveal">
-              <div className="section-label left">Neden Biz</div>
+              <div className="section-label left">{t.whyUs.label}</div>
               <h2 className="section-title section-title-light">
-                Güven, Hız ve<br />
-                <em style={{ fontStyle: 'italic', color: 'var(--gold-light)' }}>Mükemmellik</em>
+                {t.whyUs.title1}<br />
+                <em style={{ fontStyle: 'italic', color: 'var(--gold-light)' }}>{t.whyUs.title2}</em>
               </h2>
               <p className="why-intro">
-                Taksim Tercüme Bürosu olarak her müşterimizin belgesini kendi belgemiz gibi özenle çeviriyoruz. Uzman kadromuz, ISO standartlarımız ve yılların deneyimiyle fark yaratıyoruz.
+                {t.whyUs.intro}
               </p>
             </div>
             <div className="why-features">
-              {WHY_FEATURES.map((f, i) => (
-                <div className={`why-feature reveal reveal-d${i + 1}`} key={f.title}>
-                  <div className="why-feature-icon">{f.icon}</div>
+              {t.whyUs.features.map((f, i) => (
+                <div className={`why-feature reveal reveal-d${i + 1}`} key={i}>
+                  <div className="why-feature-icon">{featureIcons[i]}</div>
                   <div>
                     <div className="why-feature-title">{f.title}</div>
                     <div className="why-feature-desc">{f.desc}</div>
@@ -334,10 +320,10 @@ function WhyUs() {
 
           <div>
             <div className="why-certs">
-              {CERTS.map((c, i) => (
-                <div className={`why-cert reveal reveal-d${i + 1}`} key={c.title}>
+              {t.whyUs.certs.map((c, i) => (
+                <div className={`why-cert reveal reveal-d${i + 1}`} key={i}>
                   <div className="why-cert-top">
-                    <span className="why-cert-icon">{c.icon}</span>
+                    <span className="why-cert-icon">{certIcons[i]}</span>
                     <span className="why-cert-title">{c.title}</span>
                   </div>
                   <div className="why-cert-text">{c.text}</div>
@@ -353,30 +339,45 @@ function WhyUs() {
 
 /* ─── LANGUAGES ─── */
 function Languages() {
+  const { t } = useLang()
+  const langFlags = [
+    { code: 'gb', flag: '🇬🇧' },
+    { code: 'de', flag: '🇩🇪' },
+    { code: 'fr', flag: '🇫🇷' },
+    { code: 'sa', flag: '🇸🇦' },
+    { code: 'ru', flag: '🇷🇺' },
+    { code: 'es', flag: '🇪🇸' },
+    { code: 'cn', flag: '🇨🇳' },
+    { code: 'jp', flag: '🇯🇵' },
+    { code: 'it', flag: '🇮🇹' },
+    { code: 'nl', flag: '🇳🇱' },
+    { code: 'pl', flag: '🇵🇱' },
+    { code: 'pt', flag: '🇵🇹' },
+  ]
+
   return (
     <section className="languages" id="diller">
       <Skyline position="bottom" color="var(--navy)" opacity={0.18} />
       <div className="container">
         <div className="languages-header reveal">
-          <div className="section-label">Dil Desteği</div>
-          <h2 className="section-title">80+ Dilde <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Profesyonel</em> Çeviri</h2>
+          <div className="section-label">{t.languages.label}</div>
+          <h2 className="section-title">{t.languages.title1} <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>{t.languages.title2}</em> {t.languages.title3}</h2>
         </div>
         <div className="lang-grid">
-          {LANGUAGES.map((l, i) => (
-            <div className={`lang-card reveal reveal-d${(i % 4) + 1}`} key={l.name}>
+          {t.languages.items.map((name, i) => (
+            <div className={`lang-card reveal reveal-d${(i % 4) + 1}`} key={i}>
               <img
                 className="lang-flag"
-                src={`https://flagcdn.com/w40/${l.code}.png`}
-                alt={l.name}
-                onError={(e) => { e.currentTarget.outerHTML = `<span class="lang-flag lang-flag-emoji">${l.flag}</span>` }}
+                src={`https://flagcdn.com/w40/${langFlags[i].code}.png`}
+                alt={name}
+                onError={(e) => { e.currentTarget.outerHTML = `<span class="lang-flag lang-flag-emoji">${langFlags[i].flag}</span>` }}
               />
-              <div className="lang-name">{l.name}</div>
-              <div className="lang-native">{l.native}</div>
+              <div className="lang-name">{name}</div>
             </div>
           ))}
         </div>
         <p className="lang-more reveal">
-          ve <span>68 dil daha</span> — Doğu Avrupa, Orta Doğu, Uzak Doğu ve Afrika dilleri dahil.
+          {t.languages.moreText.replace('{n}', t.languages.moreN)}
         </p>
       </div>
     </section>
@@ -385,19 +386,20 @@ function Languages() {
 
 /* ─── PROCESS ─── */
 function Process() {
+  const { t } = useLang()
   return (
     <section className="process">
       <Skyline position="top" flip color="var(--navy)" opacity={0.18} />
       <div className="container">
         <div className="process-header reveal">
-          <div className="section-label">Nasıl Çalışıyoruz</div>
-          <h2 className="section-title">4 Adımda <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Hızlı Çeviri</em></h2>
+          <div className="section-label">{t.process.label}</div>
+          <h2 className="section-title">{t.process.title1} <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>{t.process.title2}</em></h2>
         </div>
         <div className="process-steps">
           <div className="process-line" />
-          {PROCESS_STEPS.map((s, i) => (
-            <div className={`process-step reveal reveal-d${i + 1}`} key={s.num}>
-              <div className="process-num">{s.num}</div>
+          {t.process.steps.map((s, i) => (
+            <div className={`process-step reveal reveal-d${i + 1}`} key={i}>
+              <div className="process-num">{String(i + 1).padStart(2, '0')}</div>
               <div className="process-step-title">{s.title}</div>
               <div className="process-step-desc">{s.desc}</div>
             </div>
@@ -410,6 +412,7 @@ function Process() {
 
 /* ─── CONTACT ─── */
 function Contact() {
+  const { t } = useLang()
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', source: '', message: '' })
   const [sent, setSent] = useState(false)
 
@@ -419,6 +422,13 @@ function Contact() {
     setSent(true)
   }
 
+  const contactIcons = [
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.09-1.09a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  ]
+
   return (
     <section className="contact" id="iletisim">
       <div className="contact-gradient" />
@@ -427,24 +437,19 @@ function Contact() {
         <div className="contact-inner">
           <div>
             <div className="reveal">
-              <div className="section-label left">İletişim</div>
+              <div className="section-label left">{t.contact.label}</div>
               <h2 className="contact-info-title">
-                Hemen <em>Teklif Alın,</em><br />
-                Güvenle İlerleyin.
+                <em>{t.contact.titleEm}</em><br />
+                {t.contact.title2}
               </h2>
               <p className="contact-info-text">
-                Belgenizi gönderin, dakikalar içinde fiyat teklifimizi alın. Ayrıca ofisimize bizzat uğrayabilir veya bizi arayabilirsiniz.
+                {t.contact.subtitle}
               </p>
             </div>
             <div className="contact-details reveal reveal-d1">
-              {[
-                { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, label: 'Adres', value: 'İstiklal Caddesi No:42, Taksim\nBeyoğlu / İstanbul' },
-                { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.09-1.09a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>, label: 'Telefon', value: '+90 (212) 555 01 23' },
-                { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>, label: 'E-posta', value: 'info@taksimtercume.com' },
-                { icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>, label: 'Çalışma Saatleri', value: 'Hafta içi 09:00 – 19:00\nCumartesi 10:00 – 16:00' },
-              ].map(d => (
-                <div className="contact-detail" key={d.label}>
-                  <div className="contact-detail-icon">{d.icon}</div>
+              {t.contact.details.map((d, i) => (
+                <div className="contact-detail" key={i}>
+                  <div className="contact-detail-icon">{contactIcons[i]}</div>
                   <div>
                     <div className="contact-detail-label">{d.label}</div>
                     <div className="contact-detail-value" style={{ whiteSpace: 'pre-line' }}>{d.value}</div>
@@ -458,51 +463,47 @@ function Contact() {
             {sent ? (
               <div className="form-success">
                 <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>✅</div>
-                <div>Talebiniz alındı!</div>
+                <div>{t.contact.success.title}</div>
                 <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)', marginTop: '0.75rem' }}>
-                  En kısa sürede size dönüş yapacağız.
+                  {t.contact.success.desc}
                 </p>
               </div>
             ) : (
               <form onSubmit={submit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Ad Soyad *</label>
-                    <input name="name" placeholder="Adınız" value={form.name} onChange={handle} required />
+                    <label>{t.contact.form.name}</label>
+                    <input name="name" placeholder={t.contact.form.namePh} value={form.name} onChange={handle} required />
                   </div>
                   <div className="form-group">
-                    <label>E-posta *</label>
-                    <input name="email" type="email" placeholder="ornek@email.com" value={form.email} onChange={handle} required />
+                    <label>{t.contact.form.email}</label>
+                    <input name="email" type="email" placeholder={t.contact.form.emailPh} value={form.email} onChange={handle} required />
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Telefon</label>
-                    <input name="phone" placeholder="+90 5xx xxx xx xx" value={form.phone} onChange={handle} />
+                    <label>{t.contact.form.phone}</label>
+                    <input name="phone" placeholder={t.contact.form.phonePh} value={form.phone} onChange={handle} />
                   </div>
                   <div className="form-group">
-                    <label>Hizmet Türü *</label>
+                    <label>{t.contact.form.service}</label>
                     <select name="service" value={form.service} onChange={handle} required>
-                      <option value="">Seçiniz...</option>
-                      <option>Belge Çevirisi</option>
-                      <option>Tercümanlık</option>
-                      <option>Noter Onaylı Çeviri</option>
-                      <option>Hukuki Çeviri</option>
-                      <option>Tıbbi Çeviri</option>
-                      <option>Teknik Çeviri</option>
-                      <option>Diğer</option>
+                      <option value="">{t.contact.form.servicePh}</option>
+                      {t.contact.form.serviceOptions.map((opt, i) => (
+                        <option key={i}>{opt}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Kaynak &amp; Hedef Dil</label>
-                  <input name="source" placeholder="Örn: Türkçe → İngilizce" value={form.source} onChange={handle} />
+                  <label>{t.contact.form.langPair}</label>
+                  <input name="source" placeholder={t.contact.form.langPairPh} value={form.source} onChange={handle} />
                 </div>
                 <div className="form-group">
-                  <label>Notlarınız</label>
-                  <textarea name="message" placeholder="Belge hakkında ek bilgi, acele teslimat talebi vb." value={form.message} onChange={handle} />
+                  <label>{t.contact.form.notes}</label>
+                  <textarea name="message" placeholder={t.contact.form.notesPh} value={form.message} onChange={handle} />
                 </div>
-                <button type="submit" className="form-submit">Teklif Talebi Gönder →</button>
+                <button type="submit" className="form-submit">{t.contact.form.submit}</button>
               </form>
             )}
           </div>
@@ -514,6 +515,7 @@ function Contact() {
 
 /* ─── FOOTER ─── */
 function Footer() {
+  const { t } = useLang()
   return (
     <footer className="footer">
       <div className="container">
@@ -527,7 +529,7 @@ function Footer() {
               </div>
             </div>
             <p className="footer-brand-desc">
-              İstanbul'un kalbinde, 20 yılı aşkın deneyimle dil bariyerlerini yıkıyoruz. Güvenilir, hızlı ve uzman çeviri hizmetleri.
+              {t.footer.brandDesc}
             </p>
             <div className="footer-socials">
               {['f', 'in', 'tw', 'ig'].map(s => (
@@ -537,42 +539,42 @@ function Footer() {
           </div>
 
           <div>
-            <div className="footer-col-title">Hizmetler</div>
+            <div className="footer-col-title">{t.footer.services}</div>
             <ul className="footer-links">
-              {['Belge Çevirisi', 'Tercümanlık', 'Noter Onaylı', 'Hukuki Çeviri', 'Tıbbi Çeviri', 'Teknik Çeviri'].map(l => (
+              {t.footer.servicesList.map(l => (
                 <li key={l}><Link to="/hizmetler">{l}</Link></li>
               ))}
             </ul>
           </div>
 
           <div>
-            <div className="footer-col-title">Diller</div>
+            <div className="footer-col-title">{t.footer.languages}</div>
             <ul className="footer-links">
-              {['İngilizce', 'Almanca', 'Fransızca', 'Arapça', 'Rusça', 'İspanyolca'].map(l => (
+              {t.footer.languagesList.map(l => (
                 <li key={l}><Link to="/diller">{l}</Link></li>
               ))}
             </ul>
           </div>
 
           <div>
-            <div className="footer-col-title">İletişim</div>
+            <div className="footer-col-title">{t.footer.contact}</div>
             <ul className="footer-links">
-              <li><Link to="/iletisim">İstiklal Cad. No:42, Taksim</Link></li>
-              <li><Link to="/iletisim">+90 (212) 555 01 23</Link></li>
-              <li><Link to="/iletisim">info@taksimtercume.com</Link></li>
-              <li><Link to="/iletisim">Çalışma Saatleri</Link></li>
+              <li><Link to="/iletisim">{t.contact.details[0].value.split('\n')[0]}</Link></li>
+              <li><Link to="/iletisim">{t.contact.details[1].value}</Link></li>
+              <li><Link to="/iletisim">{t.contact.details[2].value}</Link></li>
+              <li><Link to="/iletisim">{t.footer.hours}</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
           <div className="footer-copy">
-            © 2024 <span>Taksim Tercüme Bürosu</span>. Tüm hakları saklıdır.
+            {t.footer.copyright}
           </div>
           <div className="footer-bottom-links">
-            <a href="#">Gizlilik Politikası</a>
-            <a href="#">Kullanım Şartları</a>
-            <a href="#">KVKK</a>
+            <a href="#">{t.footer.privacy}</a>
+            <a href="#">{t.footer.terms}</a>
+            <a href="#">{t.footer.kvkk}</a>
           </div>
         </div>
       </div>
@@ -616,19 +618,21 @@ const FAQS = [
   },
 ]
 
+/* ─── FAQ ─── */
 function FAQ() {
+  const { t } = useLang()
   const [open, setOpen] = useState(0)
   return (
     <section className="faq-section">
       <Skyline position="bottom" color="var(--navy)" opacity={0.18} />
       <div className="container">
         <div className="faq-header reveal">
-          <div className="section-label">SSS</div>
-          <h2 className="section-title">Sıkça Sorulan <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Sorular</em></h2>
-          <p className="faq-subtitle">Aklınızdaki soruların cevaplarını burada bulabilirsiniz.</p>
+          <div className="section-label">{t.faq.label}</div>
+          <h2 className="section-title">{t.faq.title1} <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>{t.faq.title2}</em></h2>
+          <p className="faq-subtitle">{t.faq.subtitle}</p>
         </div>
         <div className="faq-list">
-          {FAQS.map((item, i) => (
+          {t.faq.items.map((item, i) => (
             <div className={`faq-item${open === i ? ' faq-open' : ''}`} key={i}>
               <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
                 <span>{item.q}</span>
@@ -663,7 +667,7 @@ function FAQPage()       { return <PageWrapper><FAQ /></PageWrapper> }
 /* ─── APP ─── */
 export default function App() {
   return (
-    <>
+    <LangProvider>
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -675,6 +679,6 @@ export default function App() {
         <Route path="/sss"           element={<FAQPage />} />
       </Routes>
       <Footer />
-    </>
+    </LangProvider>
   )
 }
