@@ -146,6 +146,7 @@ function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
   const { t } = useLang()
+  const [mobileOpen, setMobileOpen] = useState(false)
   const isHome = location.pathname === '/'
   const navScrolled = !isHome || scrolled
 
@@ -159,23 +160,37 @@ function Navbar() {
     }
   }
 
+  const closeMenu = () => setMobileOpen(false)
+
   return (
-    <nav className={`navbar${navScrolled ? ' scrolled' : ''}`}>
+    <nav className={`navbar${navScrolled ? ' scrolled' : ''}${mobileOpen ? ' mobile-open' : ''}`}>
       <a href="/" className="nav-logo" onClick={handleLogo}>
         <div className="nav-logo-mark">T</div>
         <div>
           <div className="nav-logo-text">Taksim Tercüme</div>
         </div>
       </a>
-      <ul className="nav-links">
-        <li><NavLink to="/">{t.nav.home}</NavLink></li>
-        <li><NavLink to="/hizmetler">{t.nav.services}</NavLink></li>
-        <li><NavLink to="/neden-biz">{t.nav.whyUs}</NavLink></li>
-        <li><NavLink to="/diller">{t.nav.languages}</NavLink></li>
-        <li><NavLink to="/sss">{t.nav.faq}</NavLink></li>
-        <li><NavLink to="/iletisim" className="nav-cta">{t.nav.quote}</NavLink></li>
-        <li><LangSwitcher /></li>
+      
+      <div className="nav-right">
+        <LangSwitcher />
+        <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menü">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <ul className={`nav-links${mobileOpen ? ' open' : ''}`}>
+        <li><NavLink to="/" onClick={closeMenu}>{t.nav.home}</NavLink></li>
+        <li><NavLink to="/hizmetler" onClick={closeMenu}>{t.nav.services}</NavLink></li>
+        <li><NavLink to="/neden-biz" onClick={closeMenu}>{t.nav.whyUs}</NavLink></li>
+        <li><NavLink to="/diller" onClick={closeMenu}>{t.nav.languages}</NavLink></li>
+        <li><NavLink to="/sss" onClick={closeMenu}>{t.nav.faq}</NavLink></li>
+        <li><NavLink to="/iletisim" onClick={closeMenu} className="nav-cta">{t.nav.quote}</NavLink></li>
+        <li className="nav-links-lang"><LangSwitcher /></li>
       </ul>
+
+      {mobileOpen && <div className="nav-overlay" onClick={closeMenu} />}
     </nav>
   )
 }
