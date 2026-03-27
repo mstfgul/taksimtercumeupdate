@@ -113,32 +113,29 @@ function HelloCycler() {
 /* ─── LANGUAGE SWITCHER ─── */
 function LangSwitcher() {
   const { lang, setLang } = useLang()
-  const [open, setOpen] = useState(false)
   const langs = Object.keys(LANG_CONFIG)
 
   return (
     <div className="lang-switcher">
-      <button className="lang-switcher-btn" onClick={() => setOpen(!open)}>
+      <button className="lang-switcher-btn">
         <span className="lang-switcher-flag">{LANG_CONFIG[lang].flag}</span>
         <span className="lang-switcher-label">{LANG_CONFIG[lang].label}</span>
-        <svg className={`lang-switcher-arrow${open ? ' open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg className="lang-switcher-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </button>
-      {open && (
-        <div className="lang-switcher-dropdown">
-          {langs.map(l => (
-            <button
-              key={l}
-              className={`lang-switcher-option${l === lang ? ' active' : ''}`}
-              onClick={() => { setLang(l); setOpen(false) }}
-            >
-              <span className="lang-switcher-flag">{LANG_CONFIG[l].flag}</span>
-              <span>{LANG_CONFIG[l].nativeName}</span>
-            </button>
-          ))}
-        </div>
-      )}
+      <div className="lang-switcher-dropdown">
+        {langs.map(l => (
+          <button
+            key={l}
+            className={`lang-switcher-option${l === lang ? ' active' : ''}`}
+            onClick={() => setLang(l)}
+          >
+            <span className="lang-switcher-flag">{LANG_CONFIG[l].flag}</span>
+            <span>{LANG_CONFIG[l].nativeName}</span>
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
