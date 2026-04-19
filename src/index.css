@@ -206,7 +206,9 @@ body {
 .nav-right { display: none; }
 .hamburger { display: none; }
 .nav-overlay { display: none; }
-.nav-links-lang { display: none; }
+
+/* Desktop: show language switcher in the main nav links */
+.nav-links-lang { display: flex; align-items: center; }
 
 /* ── HERO ── */
 .hero {
@@ -1174,6 +1176,7 @@ body {
     padding: 0.8rem 1.5rem !important;
   }
   .nav-links-lang { 
+    display: none;
     margin-top: auto; 
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255,255,255,0.1);
