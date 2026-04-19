@@ -87,7 +87,7 @@ export const translations = {
       details: [
         { label: 'Adres', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'Telefon', value: '+90 507 219 89 39' },
-        { label: 'E-posta', value: 'info@taksimtercume.com' },
+        { label: 'E-posta', value: 'onlartercume@gmail.com' },
         { label: 'Çalışma Saatleri', value: 'Hafta içi 09:00 – 19:00\nCumartesi 10:00 – 16:00' },
       ],
       form: {
@@ -111,7 +111,7 @@ export const translations = {
         { q: 'Çeviri süreciniz ne kadar sürer?', a: 'Standart bir belge çevirisi genellikle 1–2 iş günü içinde tamamlanır. Uzun sözleşmeler veya teknik dokümanlar için bu süre 3–5 iş gününe uzayabilir. Acil talepler için ek ücret karşılığında aynı gün veya 24 saat içinde teslimat seçeneğimiz mevcuttur. Belgenizi gönderdikten sonra size net bir teslim tarihi bildiriyoruz.' },
         { q: 'Noter onaylı çeviri ile yeminli çeviri arasındaki fark nedir?', a: 'Yeminli çeviri; Türkiye Adalet Bakanlığı\'nca yetkilendirilmiş yeminli mütercimler tarafından yapılan ve resmi makamlarca doğrudan kabul edilen çeviridir. Noter onaylı çeviri ise herhangi bir çevirmenin yaptığı çevirinin noter huzurunda imzalanarak tasdik edilmesidir. Yurt dışı işlemler, mahkemeler ve devlet kurumları genellikle yeminli çeviri talep eder.' },
         { q: 'Hangi belgeleri çevirebilirsiniz?', a: 'Nüfus cüzdanı, pasaport, ehliyet, diploma, transkript, doğum ve evlilik cüzdanı, vefat belgesi, vekaletname, ticaret sicil gazetesi, şirket sözleşmeleri, mahkeme kararları, hukuki dilekçeler, tıbbi raporlar, ilaç prospektüsleri, teknik şartnameler, yazılım arayüzleri ve çok daha fazlasını çeviriyoruz.' },
-        { q: 'Belgemi nasıl gönderebilirim?', a: 'Belgelerinizi info@taksimtercume.com adresine e-posta ile ya da WhatsApp hattımıza fotoğraf veya PDF olarak iletebilirsiniz. Dilerseniz Şişhane\'deki ofisimize bizzat uğrayabilir, asıl belgeyi teslim edebilirsiniz. Yurt içi ve yurt dışı kargo kabul edilmektedir.' },
+        { q: 'Belgemi nasıl gönderebilirim?', a: 'Belgelerinizi onlartercume@gmail.com adresine e-posta ile ya da WhatsApp hattımıza fotoğraf veya PDF olarak iletebilirsiniz. Dilerseniz Şişhane\'deki ofisimize bizzat uğrayabilir, asıl belgeyi teslim edebilirsiniz. Yurt içi ve yurt dışı kargo kabul edilmektedir.' },
         { q: 'Fiyatlandırma nasıl yapılıyor?', a: 'Ücretlerimiz; dil çifti, belge türü, sayfa veya kelime sayısı ve teslimat süresine göre belirlenir. Nadir dil çiftleri veya yüksek uzmanlık gerektiren alanlarda fiyatlandırma farklılık gösterebilir. Belgenizi bizimle paylaşır paylaşmaz 15–30 dakika içinde ücretsiz fiyat teklifini e-posta ile iletiyoruz.' },
         { q: 'ISO 17100 sertifikası ne anlama geliyor?', a: 'ISO 17100, profesyonel çeviri hizmetleri için uluslararası alanda kabul görmüş kalite yönetim standardıdır. Bu sertifika; çevirmenlerimizin eğitim ve deneyim şartlarını karşıladığını, her çevirinin çeviri + editör aşamalarından geçtiğini ve hizmet sürecimizin uluslararası kalite kriterlerine uygun olduğunu belgeler.' },
         { q: 'Belgelerimin gizliliği güvende mi?', a: 'Müşteri belgelerinin gizliliği bizim için önceliklidir. Tüm çalışanlarımız ve dış kaynaklı çevirmenlerimiz gizlilik sözleşmesi (NDA) imzalar. Belgeleriniz yalnızca ilgili çeviri ekibiyle paylaşılır, üçüncü taraflara kesinlikle verilmez.' },
@@ -213,7 +213,7 @@ export const translations = {
       details: [
         { label: 'Address', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'Phone', value: '+90 507 219 89 39' },
-        { label: 'Email', value: 'info@taksimtercume.com' },
+        { label: 'Email', value: 'onlartercume@gmail.com' },
         { label: 'Working Hours', value: 'Weekdays 09:00 – 19:00\nSaturday 10:00 – 16:00' },
       ],
       form: {
@@ -237,7 +237,7 @@ export const translations = {
         { q: 'How long does the translation process take?', a: 'A standard document translation is generally completed within 1–2 business days. For lengthy contracts or technical documents, this may extend to 3–5 business days. For urgent requests, same-day or 24-hour delivery is available for an additional fee. Once you submit your document, we will provide a firm delivery date.' },
         { q: 'What is the difference between notarized and sworn translation?', a: 'A sworn translation is performed by translators authorized by the Turkish Ministry of Justice and is directly accepted by official authorities. A notarized translation is any translator\'s work signed and certified by a notary. Courts, government institutions, and international applications typically require sworn translations.' },
         { q: 'What types of documents can you translate?', a: 'We translate ID cards, passports, driver\'s licenses, diplomas, transcripts, birth and marriage certificates, death certificates, powers of attorney, trade registry records, company agreements, court orders, legal petitions, medical reports, drug leaflets, technical specifications, software interfaces, and much more.' },
-        { q: 'How can I send my document?', a: 'You can send your documents by email to info@taksimtercume.com or as a photo or PDF via our WhatsApp line. You are also welcome to visit our office in Şişhane to submit the original document. Domestic and international courier services are accepted.' },
+        { q: 'How can I send my document?', a: 'You can send your documents by email to onlartercume@gmail.com or as a photo or PDF via our WhatsApp line. You are also welcome to visit our office in Şişhane to submit the original document. Domestic and international courier services are accepted.' },
         { q: 'How is pricing determined?', a: 'Our fees are determined based on the language pair, document type, number of pages or words, and delivery timeframe. Pricing may differ for rare language pairs or highly specialized fields (law, medicine, technical). Once you share your document, we send a free price quote by email within 15–30 minutes.' },
         { q: 'What does the ISO 17100 certificate mean?', a: 'ISO 17100 is the internationally recognized quality management standard for professional translation services. This certificate confirms that our translators meet educational and experience requirements, every translation goes through translation and editing stages, and our service process complies with international quality criteria.' },
         { q: 'Is the confidentiality of my documents safe?', a: 'The confidentiality of client documents is our top priority. All employees and freelance translators sign a non-disclosure agreement (NDA). Your documents are shared only with the relevant translation team and are never passed to third parties. After completion, digital copies are deleted using secure protocols.' },
@@ -339,7 +339,7 @@ export const translations = {
       details: [
         { label: 'Адрес', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'Телефон', value: '+90 507 219 89 39' },
-        { label: 'Электронная почта', value: 'info@taksimtercume.com' },
+        { label: 'Электронная почта', value: 'onlartercume@gmail.com' },
         { label: 'Рабочие часы', value: 'Будни 09:00 – 19:00\nСуббота 10:00 – 16:00' },
       ],
       form: {
@@ -363,7 +363,7 @@ export const translations = {
         { q: 'Сколько времени занимает процесс перевода?', a: 'Стандартный перевод документа обычно выполняется в течение 1–2 рабочих дней. Для длинных договоров или технических документов это может занять 3–5 рабочих дней. Для срочных запросов доступна доставка в тот же день или в течение 24 часов за дополнительную плату. После получения документа мы сообщим вам точную дату доставки.' },
         { q: 'В чём разница между нотариально заверенным и присяжным переводом?', a: 'Присяжный перевод выполняется переводчиками, уполномоченными Министерством юстиции Турции, и принимается официальными органами напрямую. Нотариально заверенный — это любой перевод, подписанный и заверенный у нотариуса. Суды, государственные органы и международные заявки, как правило, требуют присяжного перевода.' },
         { q: 'Какие документы вы можете переводить?', a: 'Мы переводим удостоверения личности, паспорта, водительские права, дипломы, транскрипты, свидетельства о рождении и браке, свидетельства о смерти, доверенности, торговые реестры, договоры компаний, судебные решения, медицинские отчёты, технические спецификации, программные интерфейсы и многое другое.' },
-        { q: 'Как я могу отправить свой документ?', a: 'Вы можете отправить документы по электронной почте на info@taksimtercume.com или в виде фотографии или PDF через наш канал WhatsApp. Вы также можете посетить наш офис в Şişhane для личной сдачи оригинального документа. Принимаются внутренние и международные курьерские службы.' },
+        { q: 'Как я могу отправить свой документ?', a: 'Вы можете отправить документы по электронной почте на onlartercume@gmail.com или в виде фотографии или PDF через наш канал WhatsApp. Вы также можете посетить наш офис в Şişhane для личной сдачи оригинального документа. Принимаются внутренние и международные курьерские службы.' },
         { q: 'Как определяется стоимость?', a: 'Наши тарифы определяются на основе языковой пары, типа документа, количества страниц или слов и сроков доставки. После предоставления документа мы в течение 15–30 минут отправляем бесплатное ценовое предложение по электронной почте.' },
         { q: 'Что означает сертификат ISO 17100?', a: 'ISO 17100 — это международно признанный стандарт управления качеством для профессиональных услуг перевода. Этот сертификат подтверждает, что наши переводчики соответствуют требованиям к образованию и опыту, и что каждый перевод проходит этапы перевода и редактирования.' },
         { q: 'Надёжна ли конфиденциальность моих документов?', a: 'Конфиденциальность документов клиентов является нашим главным приоритетом. Все сотрудники и внештатные переводчики подписывают соглашение о неразглашении (NDA). Ваши документы передаются только соответствующей команде перевода и никогда не передаются третьим сторонам.' },
@@ -465,7 +465,7 @@ export const translations = {
       details: [
         { label: 'العنوان', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'الهاتف', value: '+90 507 219 89 39' },
-        { label: 'البريد الإلكتروني', value: 'info@taksimtercume.com' },
+        { label: 'البريد الإلكتروني', value: 'onlartercume@gmail.com' },
         { label: 'ساعات العمل', value: 'أيام الأسبوع 09:00 – 19:00\nالسبت 10:00 – 16:00' },
       ],
       form: {
@@ -489,7 +489,7 @@ export const translations = {
         { q: 'كم يستغرق وقت الترجمة؟', a: 'تكتمل الترجمة الاعتيادية للوثيقة في العادة خلال 1–2 يوم عمل. بالنسبة للعقود الطويلة أو الوثائق التقنية، قد يمتد هذا إلى 3–5 أيام عمل. للطلبات العاجلة، يتوفر خيار التسليم في نفس اليوم أو خلال 24 ساعة مقابل رسوم إضافية.' },
         { q: 'ما الفرق بين الترجمة الموثقة والترجمة بقَسَم؟', a: 'الترجمة بقَسَم هي ترجمة يؤديها مترجمون معتمدون من وزارة العدل التركية وتُقبل مباشرةً من الجهات الرسمية. أما الترجمة الموثقة فهي ترجمة أي مترجم يوقعها ويصادق عليها كاتب العدل. تطلب المحاكم والمؤسسات الحكومية في العادة الترجمة بقَسَم.' },
         { q: 'ما أنواع الوثائق التي يمكنكم ترجمتها؟', a: 'نترجم بطاقات الهوية وجوازات السفر ورخص القيادة والشهادات وكشوف الدرجات وشهادات الميلاد والزواج وشهادات الوفاة ووكالات التفويض وسجلات التجارة وعقود الشركات والأحكام القضائية والتقارير الطبية والمواصفات التقنية وغير ذلك الكثير.' },
-        { q: 'كيف يمكنني إرسال وثيقتي؟', a: 'يمكنك إرسال وثائقك عبر البريد الإلكتروني إلى info@taksimtercume.com أو بصورة أو PDF عبر خط واتساب الخاص بنا. يمكنك أيضًا زيارة مكتبنا في شيشانه لتسليم الوثيقة الأصلية شخصيًا.' },
+        { q: 'كيف يمكنني إرسال وثيقتي؟', a: 'يمكنك إرسال وثائقك عبر البريد الإلكتروني إلى onlartercume@gmail.com أو بصورة أو PDF عبر خط واتساب الخاص بنا. يمكنك أيضًا زيارة مكتبنا في شيشانه لتسليم الوثيقة الأصلية شخصيًا.' },
         { q: 'كيف يتم تحديد الأسعار؟', a: 'تُحدَّد رسومنا بناءً على زوج اللغات ونوع الوثيقة وعدد الصفحات أو الكلمات ومهلة التسليم. بمجرد مشاركتك للوثيقة، نرسل عرضًا سعريًا مجانيًا عبر البريد الإلكتروني خلال 15–30 دقيقة.' },
         { q: 'ماذا تعني شهادة ISO 17100؟', a: 'ISO 17100 هو المعيار الدولي المعترف به لإدارة جودة خدمات الترجمة الاحترافية. تؤكد هذه الشهادة أن مترجمينا يستوفون متطلبات التعليم والخبرة، وأن كل ترجمة تمر بمراحل الترجمة والتحرير.' },
         { q: 'هل سرية وثائقي مضمونة؟', a: 'إن سرية وثائق العملاء هي أولويتنا القصوى. يوقّع جميع الموظفين والمترجمين المستقلين على اتفاقية عدم إفصاح (NDA). لا تُشارَك وثائقك إلا مع فريق الترجمة المعني وتُحفَظ طيّ الكتمان عن أي أطراف ثالثة.' },
@@ -591,7 +591,7 @@ export const translations = {
       details: [
         { label: 'آدرس', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'تلفن', value: '+90 507 219 89 39' },
-        { label: 'ایمیل', value: 'info@taksimtercume.com' },
+        { label: 'ایمیل', value: 'onlartercume@gmail.com' },
         { label: 'ساعات کاری', value: 'روزهای هفته ۰۹:۰۰ – ۱۹:۰۰\nشنبه ۱۰:۰۰ – ۱۶:۰۰' },
       ],
       form: {
@@ -615,7 +615,7 @@ export const translations = {
         { q: 'فرآیند ترجمه چقدر طول می‌کشد؟', a: 'ترجمه یک سند استاندارد معمولاً طی ۱ تا ۲ روز کاری تکمیل می‌شود. برای قراردادهای طولانی یا اسناد فنی، این مدت ممکن است به ۳ تا ۵ روز کاری افزایش یابد. برای سفارش‌های فوری، تحویل در همان روز یا ۲۴ ساعته با هزینه اضافی در دسترس است.' },
         { q: 'تفاوت ترجمه رسمی‌شده و ترجمه سوگندخورده چیست؟', a: 'ترجمه سوگندخورده توسط مترجمانی انجام می‌شود که مجاز از وزارت دادگستری ترکیه هستند و مستقیماً توسط مراجع رسمی پذیرفته می‌شود. ترجمه رسمی‌شده ترجمه‌ای است که در حضور نوتر امضا و تأیید می‌شود. دادگاه‌ها و سازمان‌های دولتی معمولاً ترجمه سوگندخورده را طلب می‌کنند.' },
         { q: 'چه نوع اسنادی را می‌توانید ترجمه کنید؟', a: 'ما کارت‌های ملی، گذرنامه‌ها، گواهینامه‌های رانندگی، مدارک تحصیلی، کارنامه‌ها، شناسنامه‌های تولد و ازدواج، گواهی فوت، وکالت‌نامه‌ها، ثبت‌های تجاری، قراردادها، احکام دادگاه، گزارش‌های پزشکی، مشخصات فنی و بسیار بیشتر ترجمه می‌کنیم.' },
-        { q: 'چگونه می‌توانم سند خود را ارسال کنم؟', a: 'می‌توانید اسناد خود را از طریق ایمیل به info@taksimtercume.com یا به‌صورت عکس یا PDF از طریق خط واتساپ ما ارسال کنید. همچنین می‌توانید شخصاً از دفتر ما در شیشانه بازدید کنید. خدمات پست داخلی و بین‌المللی پذیرفته می‌شود.' },
+        { q: 'چگونه می‌توانم سند خود را ارسال کنم؟', a: 'می‌توانید اسناد خود را از طریق ایمیل به onlartercume@gmail.com یا به‌صورت عکس یا PDF از طریق خط واتساپ ما ارسال کنید. همچنین می‌توانید شخصاً از دفتر ما در شیشانه بازدید کنید. خدمات پست داخلی و بین‌المللی پذیرفته می‌شود.' },
         { q: 'قیمت‌گذاری چگونه تعیین می‌شود؟', a: 'هزینه‌های ما بر اساس جفت زبان، نوع سند، تعداد صفحات یا کلمات و مهلت تحویل تعیین می‌شود. پس از اشتراک‌گذاری سند، پیشنهاد قیمت رایگان طی ۱۵ تا ۳۰ دقیقه از طریق ایمیل ارسال می‌شود.' },
         { q: 'گواهینامه ISO 17100 چه معنایی دارد؟', a: 'ISO 17100 استاندارد مدیریت کیفیت بین‌المللی پذیرفته‌شده برای خدمات ترجمه حرفه‌ای است. این گواهینامه تأیید می‌کند که مترجمان ما الزامات تحصیلی و تجربی را برآورده می‌کنند و هر ترجمه از مراحل ترجمه و ویرایش می‌گذرد.' },
         { q: 'آیا محرمانگی اسناد من در امنیت است؟', a: 'محرمانگی اسناد مشتریان اولویت اصلی ماست. تمام کارکنان و مترجمان آزاد یک توافقنامه عدم افشا (NDA) امضا می‌کنند. اسناد شما فقط با تیم ترجمه مربوطه به اشتراک گذاشته می‌شود و هرگز به اشخاص ثالث منتقل نمی‌شود.' },

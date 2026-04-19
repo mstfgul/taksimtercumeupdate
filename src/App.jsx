@@ -447,6 +447,20 @@ function Contact() {
   const handle = e => setForm(p => ({ ...p, [e.target.name]: e.target.value }))
   const submit = e => {
     e.preventDefault()
+
+    const to = t.contact?.details?.[2]?.value || 'onlartercume@gmail.com'
+    const subject = `${t.nav?.quote || 'Teklif Talebi'} - ${form.name}`
+    const body = [
+      `Ad Soyad: ${form.name}`,
+      `E-posta: ${form.email}`,
+      `Telefon: ${form.phone}`,
+      `Hizmet: ${form.service}`,
+      `Kaynak & Hedef Dil: ${form.source}`,
+      '',
+      form.message,
+    ].join('\n')
+
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     setSent(true)
   }
 
@@ -626,7 +640,7 @@ const FAQS = [
   },
   {
     q: 'Belgemi nasıl gönderebilirim?',
-    a: 'Belgelerinizi info@taksimtercume.com adresine e-posta ile ya da WhatsApp hattımıza fotoğraf veya PDF olarak iletebilirsiniz. Dilerseniz İstiklal Caddesi\'ndeki ofisimize bizzat uğrayabilir, asıl belgeyi teslim edebilirsiniz. Yurt içi ve yurt dışı kargo kabul edilmektedir; noter onaylı çeviriler için orijinal belgenin fiziksel olarak teslimi gerekebilir.'
+    a: 'Belgelerinizi onlartercume@gmail.com adresine e-posta ile ya da WhatsApp hattımıza fotoğraf veya PDF olarak iletebilirsiniz. Dilerseniz İstiklal Caddesi\'ndeki ofisimize bizzat uğrayabilir, asıl belgeyi teslim edebilirsiniz. Yurt içi ve yurt dışı kargo kabul edilmektedir; noter onaylı çeviriler için orijinal belgenin fiziksel olarak teslimi gerekebilir.'
   },
   {
     q: 'Fiyatlandırma nasıl yapılıyor?',
