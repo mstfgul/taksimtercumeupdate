@@ -26,7 +26,7 @@ export const translations = {
       btn2: 'Hizmetleri İncele',
       mapLabel: 'Onlar Tercüme',
       mapRating: '5.0',
-      mapReviewCount: '(300+)',
+      mapReviewCount: '(137)',
     },
     services: {
       label: 'Hizmetlerimiz',
@@ -152,7 +152,7 @@ export const translations = {
       btn2: 'Explore Services',
       mapLabel: 'Onlar Tercüme',
       mapRating: '5.0',
-      mapReviewCount: '(300+)',
+      mapReviewCount: '(137)',
     },
     services: {
       label: 'Our Services',
@@ -278,7 +278,7 @@ export const translations = {
       btn2: 'Посмотреть услуги',
       mapLabel: 'Onlar Tercüme',
       mapRating: '5.0',
-      mapReviewCount: '(300+)',
+      mapReviewCount: '(137)',
     },
     services: {
       label: 'Наши услуги',
@@ -404,7 +404,7 @@ export const translations = {
       btn2: 'استعرض الخدمات',
       mapLabel: 'Onlar Tercüme',
       mapRating: '5.0',
-      mapReviewCount: '(300+)',
+      mapReviewCount: '(137)',
     },
     services: {
       label: 'خدماتنا',
@@ -530,7 +530,7 @@ export const translations = {
       btn2: 'مشاهده خدمات',
       mapLabel: 'Onlar Tercüme',
       mapRating: '5.0',
-      mapReviewCount: '(300+)',
+      mapReviewCount: '(137)',
     },
     services: {
       label: 'خدمات ما',
