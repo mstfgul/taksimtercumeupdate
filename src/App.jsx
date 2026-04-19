@@ -234,8 +234,8 @@ function Hero() {
 
           <div className="hero-map-wrap">
             <iframe
-              title="Taksim Tercüme Bürosu Konum"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=28.974%2C41.032%2C28.996%2C41.044&layer=mapnik&marker=41.0370%2C28.9850"
+              title="Taksim Tercüme Bürosu Konum (Şişhane)"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=28.9625%2C41.0209%2C28.9845%2C41.0329&layer=mapnik&marker=41.0269%2C28.9735"
               className="hero-map"
               loading="lazy"
             />
