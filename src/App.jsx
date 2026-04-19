@@ -239,16 +239,26 @@ function Hero() {
               className="hero-map"
               loading="lazy"
             />
-            <a
-              className="hero-map-overlay"
-              href="https://www.google.com/maps/place/Onlar+Terc%C3%BCme,+Emekyemez,+%C5%9E%C4%B0%C5%9Ehane+Sk.+Tahsin+Ke%C3%A7eci+Han+No:+4,+34421+Beyo%C4%9Flu%2F%C4%B0stanbul/data=!4m2!3m1!1s0x14cab91b6db93fe5:0x32cb9cbf254d035a"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Haritada aç"
-            >
-              <svg className="hero-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span className="hero-map-label">{t.hero.mapLabel}</span>
-            </a>
+            <div className="hero-map-overlay">
+              <a
+                className="hero-map-link"
+                href="https://www.google.com/maps/place/Onlar+Tercüme,+Emekyemez,+Şişhane+Sk.+Tahsin+Keçeci+Han+No:+4,+34421+Beyoğlu%2Fİstanbul/data=!4m2!3m1!1s0x14cab91b6db93fe5:0x32cb9cbf254d035a?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjI3LjQYACCenQoqWiw5NDI2NzcyNyw5NDI4NDQ5Myw5NDI4MDU3Niw5NDIwNzM5NCw5NDIwNzUwNiw5NDIwODUwNiw5NDIxODY1Myw5NDIyOTgzOSw5NDI3NTE2OCw5NDI3OTYxOUICVFI%3D&skid=acaf0055-b8df-4376-af39-cf57863832a2&g_st=awb"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Google Haritalar'da aç"
+              >
+                <div className="hero-map-card">
+                  <div className="hero-map-card-title">{t.hero.mapLabel}</div>
+                  <div className="hero-map-card-meta">
+                    <div className="hero-map-card-rating">
+                      <span className="hero-map-rating">{t.hero.mapRating}</span>
+                      <span className="hero-map-stars" aria-hidden="true">★★★★★</span>
+                    </div>
+                    <div className="hero-map-review-count">{t.hero.mapReviewCount}</div>
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>

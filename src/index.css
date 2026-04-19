@@ -386,29 +386,58 @@ body {
   border: none;
   display: block;
   filter: invert(0.9) hue-rotate(180deg) saturate(0.5) brightness(0.75);
-  pointer-events: none;
 }
 .hero-map-overlay {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(10,22,40,0.85));
-  padding: 0.7rem 1rem 0.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  top: 0.9rem;
+  left: 0.9rem;
+  pointer-events: none;
+}
+.hero-map-link {
+  pointer-events: auto;
+  display: block;
   text-decoration: none;
   cursor: pointer;
-  pointer-events: auto;
 }
-.hero-map-overlay:hover .hero-map-label {
+.hero-map-card {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(10,22,40,0.78);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  max-width: 240px;
+}
+.hero-map-link:hover .hero-map-card { border-color: rgba(200,150,12,0.55); }
+.hero-map-card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.02em;
+}
+.hero-map-card-meta {
+  margin-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.hero-map-card-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero-map-rating {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.86);
+}
+.hero-map-stars {
   color: var(--gold);
-}
-.hero-map-pin { font-size: 0.9rem; }
-.hero-map-label {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
   letter-spacing: 0.06em;
-  font-family: var(--font-body);
+}
+.hero-map-review-count {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.72);
 }
 
 .hero-right {
