@@ -234,15 +234,21 @@ function Hero() {
 
           <div className="hero-map-wrap">
             <iframe
-              title="Taksim Tercüme Bürosu Konum (Şişhane)"
+              title="Onlar Tercüme Konum (Şişhane)"
               src="https://www.openstreetmap.org/export/embed.html?bbox=28.9625%2C41.0209%2C28.9845%2C41.0329&layer=mapnik&marker=41.0269%2C28.9735"
               className="hero-map"
               loading="lazy"
             />
-            <div className="hero-map-overlay">
+            <a
+              className="hero-map-overlay"
+              href="https://www.google.com/maps/place/Onlar+Terc%C3%BCme,+Emekyemez,+%C5%9E%C4%B0%C5%9Ehane+Sk.+Tahsin+Ke%C3%A7eci+Han+No:+4,+34421+Beyo%C4%9Flu%2F%C4%B0stanbul/data=!4m2!3m1!1s0x14cab91b6db93fe5:0x32cb9cbf254d035a"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Haritada aç"
+            >
               <svg className="hero-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <span className="hero-map-label">{t.hero.mapLabel}</span>
-            </div>
+            </a>
           </div>
         </div>
       </div>

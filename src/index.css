@@ -386,6 +386,7 @@ body {
   border: none;
   display: block;
   filter: invert(0.9) hue-rotate(180deg) saturate(0.5) brightness(0.75);
+  pointer-events: none;
 }
 .hero-map-overlay {
   position: absolute;
@@ -395,7 +396,12 @@ body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  pointer-events: none;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.hero-map-overlay:hover .hero-map-label {
+  color: var(--gold);
 }
 .hero-map-pin { font-size: 0.9rem; }
 .hero-map-label {

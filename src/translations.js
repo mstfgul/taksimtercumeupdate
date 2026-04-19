@@ -24,7 +24,7 @@ export const translations = {
       subtitle: '20 yılı aşkın deneyimimizle 80\'den fazla dilde profesyonel çeviri ve tercümanlık hizmetleri sunuyoruz. Resmi belgelerden teknik çevirilere, her ihtiyacınızda yanınızdayız.',
       btn1: 'Teklif Al →',
       btn2: 'Hizmetleri İncele',
-      mapLabel: 'Şişhane Sk. No: 4, Beyoğlu',
+      mapLabel: 'Onlar Tercüme',
     },
     services: {
       label: 'Hizmetlerimiz',
@@ -83,7 +83,7 @@ export const translations = {
       title2: 'Güvenle İlerleyin.',
       subtitle: 'Belgenizi gönderin, dakikalar içinde fiyat teklifimizi alın. Ayrıca ofisimize bizzat uğrayabilir veya bizi arayabilirsiniz.',
       details: [
-        { label: 'Adres', value: 'Emekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
+        { label: 'Adres', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'Telefon', value: '+90 507 219 89 39' },
         { label: 'E-posta', value: 'info@taksimtercume.com' },
         { label: 'Çalışma Saatleri', value: 'Hafta içi 09:00 – 19:00\nCumartesi 10:00 – 16:00' },
@@ -148,7 +148,7 @@ export const translations = {
       subtitle: 'With over 20 years of experience, we offer professional translation and interpretation services in more than 80 languages. From official documents to technical translations, we\'re here for every need.',
       btn1: 'Get Quote →',
       btn2: 'Explore Services',
-      mapLabel: 'Şişhane Sk. No: 4, Beyoğlu',
+      mapLabel: 'Onlar Tercüme',
     },
     services: {
       label: 'Our Services',
@@ -207,7 +207,7 @@ export const translations = {
       title2: 'Proceed with Confidence.',
       subtitle: 'Send your document, receive our quote within minutes. You can also visit our office or give us a call.',
       details: [
-        { label: 'Address', value: 'Emekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
+        { label: 'Address', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'Phone', value: '+90 507 219 89 39' },
         { label: 'Email', value: 'info@taksimtercume.com' },
         { label: 'Working Hours', value: 'Weekdays 09:00 – 19:00\nSaturday 10:00 – 16:00' },
@@ -272,7 +272,7 @@ export const translations = {
       subtitle: 'С более чем 20-летним опытом мы предлагаем профессиональные услуги письменного и устного перевода на более чем 80 языках. От официальных документов до технических переводов — мы рядом в любой ситуации.',
       btn1: 'Получить цитату →',
       btn2: 'Посмотреть услуги',
-      mapLabel: 'Şişhane Sk. No: 4, Beyoğlu',
+      mapLabel: 'Onlar Tercüme',
     },
     services: {
       label: 'Наши услуги',
@@ -331,7 +331,7 @@ export const translations = {
       title2: 'Действуйте уверенно.',
       subtitle: 'Отправьте документ, получите наше предложение в течение нескольких минут. Вы также можете посетить наш офис или позвонить нам.',
       details: [
-        { label: 'Адрес', value: 'Emekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
+        { label: 'Адрес', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'Телефон', value: '+90 507 219 89 39' },
         { label: 'Электронная почта', value: 'info@taksimtercume.com' },
         { label: 'Рабочие часы', value: 'Будни 09:00 – 19:00\nСуббота 10:00 – 16:00' },
@@ -396,7 +396,7 @@ export const translations = {
       subtitle: 'بخبرة تتجاوز 20 عامًا، نقدم خدمات الترجمة التحريرية والشفهية الاحترافية بأكثر من 80 لغة. من الوثائق الرسمية إلى الترجمات التقنية، نحن هنا لكل ما تحتاجه.',
       btn1: '← احصل على عرض',
       btn2: 'استعرض الخدمات',
-      mapLabel: 'Şişhane Sk. No: 4, Beyoğlu',
+      mapLabel: 'Onlar Tercüme',
     },
     services: {
       label: 'خدماتنا',
@@ -455,7 +455,7 @@ export const translations = {
       title2: 'وتقدم بثقة.',
       subtitle: 'أرسل وثيقتك، واحصل على عرضنا في غضون دقائق. يمكنك أيضًا زيارة مكتبنا أو الاتصال بنا.',
       details: [
-        { label: 'العنوان', value: 'Emekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
+        { label: 'العنوان', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'الهاتف', value: '+90 507 219 89 39' },
         { label: 'البريد الإلكتروني', value: 'info@taksimtercume.com' },
         { label: 'ساعات العمل', value: 'أيام الأسبوع 09:00 – 19:00\nالسبت 10:00 – 16:00' },
@@ -520,7 +520,7 @@ export const translations = {
       subtitle: 'با بیش از ۲۰ سال تجربه، خدمات ترجمه حرفه‌ای و شفاهی را در بیش از ۸۰ زبان ارائه می‌دهیم. از اسناد رسمی تا ترجمه‌های فنی، در هر نیازی کنارتان هستیم.',
       btn1: '← دریافت پیشنهاد',
       btn2: 'مشاهده خدمات',
-      mapLabel: 'Şişhane Sk. No: 4, Beyoğlu',
+      mapLabel: 'Onlar Tercüme',
     },
     services: {
       label: 'خدمات ما',
@@ -579,7 +579,7 @@ export const translations = {
       title2: 'با اطمینان پیش بروید.',
       subtitle: 'سند خود را ارسال کنید و در عرض چند دقیقه پیشنهاد ما را دریافت کنید. همچنین می‌توانید از دفتر ما بازدید کنید یا با ما تماس بگیرید.',
       details: [
-        { label: 'آدرس', value: 'Emekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
+        { label: 'آدرس', value: 'Onlar Tercüme\nEmekyemez, Şişhane Sk. Tahsin Keçeci Han No: 4\n34421 Beyoğlu/İstanbul, Türkiye' },
         { label: 'تلفن', value: '+90 507 219 89 39' },
         { label: 'ایمیل', value: 'info@taksimtercume.com' },
         { label: 'ساعات کاری', value: 'روزهای هفته ۰۹:۰۰ – ۱۹:۰۰\nشنبه ۱۰:۰۰ – ۱۶:۰۰' },
